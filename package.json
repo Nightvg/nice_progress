@@ -1,0 +1,15 @@
+{
+  "name": "nice_progress",
+  "version": "0.9.0",
+  "description": "Nice vertical progress bar as bootstrap front end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tobias Allrich",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^9.0.1"
+  }
+}
