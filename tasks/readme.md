@@ -1,0 +1,1 @@
+Placeholder, this folder needs to be there for saving purposes and I am too lazy to implement a check whether it exists or not. So just to be sure it works under any Windows file system: there you go: an empty folder!
