@@ -4,6 +4,7 @@ function saveTask() {
     const dueDate = document.getElementById('dueDate').value;
     const progress = document.getElementById('progress').value;
     const description = document.getElementById('description').value;
+    const order = document.getElementById('order').value;
 
     if (taskId) {
       // If taskId is present, update existing task
@@ -12,7 +13,7 @@ function saveTask() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ taskId, headline, dueDate, progress, description }),
+        body: JSON.stringify({ taskId, headline, dueDate, progress, description, order }),
       })
       .then(response => response.text())
       .then(message => {
@@ -27,7 +28,7 @@ function saveTask() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ headline, dueDate, progress, description }),
+        body: JSON.stringify({ headline, dueDate, progress, description, order}),
       })
       .then(response => response.text())
       .then(message => {
@@ -68,6 +69,7 @@ function saveTask() {
           document.getElementById('progress').value = task.progress;
           document.getElementById('progress-number').innerText = `${task.progress}%`;
           document.getElementById('description').value = task.description;
+          document.getElementById('order').value = task.order;
         })
         .catch(error => console.error('Error:', error));
     }

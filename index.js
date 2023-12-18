@@ -12,17 +12,17 @@ app.use(express.static('public')); // Serve static files from the 'public' folde
 
 // Site 1: Text Editor
 app.post('/saveTask', (req, res) => {
-  const { headline, dueDate, progress, description } = req.body;
+  const { headline, dueDate, progress, description, order } = req.body;
   const taskId = uuid.v4();
-  const task = { taskId, headline, dueDate, progress, description };
+  const task = { taskId, headline, dueDate, progress, description, order};
   fs.writeFileSync(`tasks/${taskId}.json`, JSON.stringify(task));
   res.send('Task saved successfully!');
 });
 
 app.put('/updateTask/:taskId', (req, res) => {
   const { taskId } = req.params;
-  const { headline, dueDate, progress, description } = req.body;
-  const task = { taskId, headline, dueDate, progress, description };
+  const { headline, dueDate, progress, description, order} = req.body;
+  const task = { taskId, headline, dueDate, progress, description, order};
   fs.writeFileSync(`tasks/${taskId}.json`, JSON.stringify(task));
   res.send('Task updated successfully!');
 });

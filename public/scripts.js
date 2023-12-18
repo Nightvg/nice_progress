@@ -17,15 +17,17 @@ function loadTasksProgress() {
 
         taskProgressContainer.style.height = `${progressBarHeight*totalTasks}px`; // Set height of progress bar container
         progressBarContainer.style.height = `${progressBarHeight*totalTasks}px`; // Set height of progress bar container
-        // Sort tasks by due date, empty due dates will be at the end
+        // Sort tasks by due date and if empty by order
         tasks.sort((a, b) => {
-        if (a.dueDate == '') {
-            return 1;
-        } else if (b.dueDate == '') {
-            return -1;
-        } else {
-            return new Date(a.dueDate) - new Date(b.dueDate);
-        }
+            if (a.dueDate == '' && b.dueDate == '') {
+                return a.order - b.order;
+            } else if (a.dueDate == '') {
+                return 1;
+            } else if (b.dueDate == '') {
+                return -1;
+            } else {
+                return new Date(a.dueDate) - new Date(b.dueDate);
+            }
         });
 
         tasks.forEach((task, index) => {
