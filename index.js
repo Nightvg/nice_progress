@@ -8,6 +8,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use('/tasks', express.static('tasks')); // Serve static files from the 'tasks' folder
+app.use(express.static('public')); // Serve static files from the 'public' folder
 
 // Site 1: Text Editor
 app.post('/saveTask', (req, res) => {
@@ -37,11 +38,11 @@ app.get('/loadTasks', (req, res) => {
 
 // Site 2: Front End
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.get('/editor', (req, res) => {
-  res.sendFile(__dirname + '/editor.html');
+  res.sendFile(__dirname + '/public/editor.html');
 });
 
 app.listen(port, () => {

@@ -1,50 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Task Editor</title>
-</head>
-<body>
-
-<div class="container mt-5">
-  <h1>Task Editor</h1>
-
-  <form id="taskForm">
-    <div class="form-group">
-      <label for="headline">Headline:</label>
-      <input type="text" class="form-control" id="headline" required>
-    </div>
-    <div class="form-group">
-      <label for="dueDate">Due Date:</label>
-      <input type="date" class="form-control" id="dueDate" required>
-    </div>
-    <div class="form-group">
-      <label for="progress">Progress:</label>
-      <input type="number" class="form-control" id="progress" min="0" max="100" required>
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea class="form-control" id="description" rows="3" required></textarea>
-    </div>
-    <button type="button" class="btn btn-primary" onclick="saveTask()">Save Task</button>
-
-    <div class="mt-3">
-      <label for="taskIdDropdown">Select Task:</label>
-      <select class="form-control" id="taskIdDropdown" onchange="loadSelectedTask()">
-        <option value="">Select a task to load</option>
-      </select>
-      <button type="button" class="btn btn-secondary mt-2" onclick="loadTask()">Load</button>
-    </div>
-  </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-  function saveTask() {
+function saveTask() {
     const taskId = document.getElementById('taskIdDropdown').value;
     const headline = document.getElementById('headline').value;
     const dueDate = document.getElementById('dueDate').value;
@@ -112,16 +66,18 @@
           document.getElementById('headline').value = task.headline;
           document.getElementById('dueDate').value = task.dueDate;
           document.getElementById('progress').value = task.progress;
+          document.getElementById('progress-number').innerText = `${task.progress}%`;
           document.getElementById('description').value = task.description;
         })
         .catch(error => console.error('Error:', error));
     }
   }
 
+  var progress = document.getElementById('progress')
+  progress.addEventListener("input", function() {
+    document.getElementById('progress-number').innerText = `${progress.value}%`;
+  });
+
   document.addEventListener("DOMContentLoaded", function() {
     loadTasksDropdown(); // Initial loading of tasks in the dropdown
   });
-</script>
-
-</body>
-</html>
