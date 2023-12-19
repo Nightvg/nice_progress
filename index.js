@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const puppeteer = require('puppeteer');
 const uuid = require('uuid');
 
 const app = express();

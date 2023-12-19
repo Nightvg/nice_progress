@@ -107,6 +107,20 @@ function loadTasksProgress() {
     .catch(error => console.error('Error:', error));
 }
 
+function captureAndSave() {
+    const captureElement = document.getElementById('capture');
+
+    html2canvas(captureElement).then(canvas => {
+        const image = canvas.toDataURL('image/png');
+
+        // Create a link element and trigger a click to download the image
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'screenshot.png';
+        link.click();
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     loadTasksProgress(); // Initial loading of task progress bars
 });
